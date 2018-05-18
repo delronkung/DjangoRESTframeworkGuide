@@ -121,10 +121,10 @@ class BookInfoSerializer(serializers.ModelSerializer):
     """图书数据序列化器"""
     class Meta:
         model = BookInfo
-        fields = ('id', 'btitle', 'bpub_date'， 'bread', 'bcomment')
+        fields = ('id', 'btitle', 'bpub_date', 'bread', 'bcomment')
         extra_kwargs = {
-            'bread': {'min_value': 0, 'required': True}},
-            'bcomment': {'min_value': 0, 'required': True}},
+            'bread': {'min_value': 0, 'required': True},
+            'bcomment': {'min_value': 0, 'required': True},
         }
           
 # BookInfoSerializer():
