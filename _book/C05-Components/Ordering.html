@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>版本 | 课程介绍</title>
+        <title>排序 | 课程介绍</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -37,10 +37,10 @@
         
     
     
-    <link rel="next" href="../C05-Components/Exceptions.html" />
+    <link rel="next" href="../C05-Components/Pagination.html" />
     
     
-    <link rel="prev" href="../C05-Components/Pagination.html" />
+    <link rel="prev" href="../C05-Components/Filtering.html" />
     
 
         
@@ -49,9 +49,9 @@
         
         
     <div class="book"
-        data-level="5.7"
-        data-chapter-title="版本"
-        data-filepath="C05-Components/Versioning.md"
+        data-level="5.5"
+        data-chapter-title="排序"
+        data-filepath="C05-Components/Ordering.md"
         data-basepath=".."
         data-revision="Tue May 22 2018 20:37:39 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -497,7 +497,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.5" data-path="C05-Components/Ordering.html">
+        <li class="chapter active" data-level="5.5" data-path="C05-Components/Ordering.html">
             
                 
                     <a href="../C05-Components/Ordering.html">
@@ -527,7 +527,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="5.7" data-path="C05-Components/Versioning.html">
+        <li class="chapter " data-level="5.7" data-path="C05-Components/Versioning.html">
             
                 
                     <a href="../C05-Components/Versioning.html">
@@ -610,97 +610,19 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="&#x7248;&#x672C;versioning">&#x7248;&#x672C;Versioning</h1>
-<p>REST framework&#x63D0;&#x4F9B;&#x4E86;&#x7248;&#x672C;&#x53F7;&#x7684;&#x652F;&#x6301;&#x3002;</p>
-<p>&#x5728;&#x9700;&#x8981;&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x7684;&#x7248;&#x672C;&#x53F7;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>request.version</code>&#x6765;&#x83B7;&#x53D6;&#x3002;</p>
-<p>&#x9ED8;&#x8BA4;&#x7248;&#x672C;&#x529F;&#x80FD;&#x672A;&#x5F00;&#x542F;&#xFF0C;<code>request.version</code> &#x8FD4;&#x56DE;None&#x3002;</p>
-<p>&#x5F00;&#x542F;&#x7248;&#x672C;&#x652F;&#x6301;&#x529F;&#x80FD;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x8BBE;&#x7F6E;<code>DEFAULT_VERSIONING_CLASS</code></p>
-<pre><code class="lang-python">REST_FRAMEWORK = {
-    <span class="hljs-string">&apos;DEFAULT_VERSIONING_CLASS&apos;</span>: <span class="hljs-string">&apos;rest_framework.versioning.NamespaceVersioning&apos;</span>
-}
-</code></pre>
-<p>&#x5176;&#x4ED6;&#x53EF;&#x9009;&#x914D;&#x7F6E;&#xFF1A;</p>
-<ul>
-<li><strong>DEFAULT_VERSION</strong>  &#x9ED8;&#x8BA4;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;None</li>
-<li><strong>ALLOWED_VERSIONS</strong>  &#x5141;&#x8BB8;&#x8BF7;&#x6C42;&#x7684;&#x7248;&#x672C;&#x53F7;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;None</li>
-<li><strong>VERSION_PARAM</strong>  &#x8BC6;&#x522B;&#x7248;&#x672C;&#x53F7;&#x53C2;&#x6570;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;&apos;version&apos;</li>
-</ul>
-<h2 id="&#x652F;&#x6301;&#x7684;&#x7248;&#x672C;&#x5904;&#x7406;&#x65B9;&#x5F0F;">&#x652F;&#x6301;&#x7684;&#x7248;&#x672C;&#x5904;&#x7406;&#x65B9;&#x5F0F;</h2>
-<p><strong>1&#xFF09; AcceptHeaderVersioning</strong></p>
-<p>&#x8BF7;&#x6C42;&#x5934;&#x4E2D;&#x4F20;&#x9012;&#x7684;Accept&#x643A;&#x5E26;version</p>
-<pre><code class="lang-python">GET /bookings/ HTTP/<span class="hljs-number">1.1</span>
-Host: example.com
-Accept: application/json; version=<span class="hljs-number">1.0</span>
-</code></pre>
-<p><strong>2&#xFF09;URLPathVersioning</strong></p>
-<p>URL&#x8DEF;&#x5F84;&#x4E2D;&#x643A;&#x5E26;</p>
-<pre><code class="lang-python">urlpatterns = [
-    url(
-        <span class="hljs-string">r&apos;^(?P&lt;version&gt;(v1|v2))/bookings/$&apos;</span>,
-        bookings_list,
-        name=<span class="hljs-string">&apos;bookings-list&apos;</span>
-    ),
-    url(
-        <span class="hljs-string">r&apos;^(?P&lt;version&gt;(v1|v2))/bookings/(?P&lt;pk&gt;[0-9]+)/$&apos;</span>,
-        bookings_detail,
-        name=<span class="hljs-string">&apos;bookings-detail&apos;</span>
-    )
-]
-</code></pre>
-<p><strong>3&#xFF09;NamespaceVersioning</strong></p>
-<p>&#x547D;&#x540D;&#x7A7A;&#x95F4;&#x4E2D;&#x5B9A;&#x4E49;</p>
-<pre><code class="lang-python"><span class="hljs-comment"># bookings/urls.py</span>
-urlpatterns = [
-    url(<span class="hljs-string">r&apos;^$&apos;</span>, bookings_list, name=<span class="hljs-string">&apos;bookings-list&apos;</span>),
-    url(<span class="hljs-string">r&apos;^(?P&lt;pk&gt;[0-9]+)/$&apos;</span>, bookings_detail, name=<span class="hljs-string">&apos;bookings-detail&apos;</span>)
-]
-
-<span class="hljs-comment"># urls.py</span>
-urlpatterns = [
-    url(<span class="hljs-string">r&apos;^v1/bookings/&apos;</span>, include(<span class="hljs-string">&apos;bookings.urls&apos;</span>, namespace=<span class="hljs-string">&apos;v1&apos;</span>)),
-    url(<span class="hljs-string">r&apos;^v2/bookings/&apos;</span>, include(<span class="hljs-string">&apos;bookings.urls&apos;</span>, namespace=<span class="hljs-string">&apos;v2&apos;</span>))
-]
-</code></pre>
-<p><strong>4&#xFF09;HostNameVersioning</strong></p>
-<p>&#x4E3B;&#x673A;&#x57DF;&#x540D;&#x643A;&#x5E26;</p>
-<pre><code class="lang-python">GET /bookings/ HTTP/<span class="hljs-number">1.1</span>
-Host: v1.example.com
-Accept: application/json
-</code></pre>
-<p><strong>5&#xFF09;QueryParameterVersioning</strong></p>
-<p>&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;&#x643A;&#x5E26;</p>
-<pre><code class="lang-python">GET /something/?version=0.1 HTTP/1.1
-Host: example.com
-Accept: application/json
-</code></pre>
-<h3 id="&#x793A;&#x4F8B;">&#x793A;&#x4F8B;</h3>
-<pre><code class="lang-python">REST_FRAMEWORK = {
-    <span class="hljs-string">&apos;DEFAULT_VERSIONING_CLASS&apos;</span>: <span class="hljs-string">&apos;rest_framework.versioning.QueryParameterVersioning&apos;</span>
-}
-</code></pre>
-<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookInfoSerializer</span><span class="hljs-params">(serializers.ModelSerializer)</span>:</span>
-    <span class="hljs-string">&quot;&quot;&quot;&#x56FE;&#x4E66;&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#x5668;&quot;&quot;&quot;</span>
-    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Meta</span>:</span>
-        model = BookInfo
-        fields = (<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-string">&apos;btitle&apos;</span>, <span class="hljs-string">&apos;bpub_date&apos;</span>, <span class="hljs-string">&apos;bread&apos;</span>, <span class="hljs-string">&apos;bcomment&apos;</span>)
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookInfoSerializer2</span><span class="hljs-params">(serializers.ModelSerializer)</span>:</span>
-    <span class="hljs-string">&quot;&quot;&quot;&#x56FE;&#x4E66;&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#x5668;&quot;&quot;&quot;</span>
-    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Meta</span>:</span>
-        model = BookInfo
-        fields = (<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-string">&apos;btitle&apos;</span>, <span class="hljs-string">&apos;bpub_date&apos;</span>)
-
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookDetailView</span><span class="hljs-params">(RetrieveAPIView)</span>:</span>
+                        <h1 id="&#x6392;&#x5E8F;">&#x6392;&#x5E8F;</h1>
+<p>&#x5BF9;&#x4E8E;&#x5217;&#x8868;&#x6570;&#x636E;&#xFF0C;REST framework&#x63D0;&#x4F9B;&#x4E86;<strong>OrderingFilter</strong>&#x8FC7;&#x6EE4;&#x5668;&#x6765;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x5FEB;&#x901F;&#x6307;&#x660E;&#x6570;&#x636E;&#x6309;&#x7167;&#x6307;&#x5B9A;&#x5B57;&#x6BB5;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x3002;</p>
+<h4 id="&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;">&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;</h4>
+<p>&#x5728;&#x7C7B;&#x89C6;&#x56FE;&#x4E2D;&#x8BBE;&#x7F6E;filter_backends&#xFF0C;&#x4F7F;&#x7528;<code>rest_framework.filters.OrderingFilter</code>&#x8FC7;&#x6EE4;&#x5668;&#xFF0C;REST framework&#x4F1A;&#x5728;&#x8BF7;&#x6C42;&#x7684;&#x67E5;&#x8BE2;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x6570;&#x4E2D;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5305;&#x542B;&#x4E86;ordering&#x53C2;&#x6570;&#xFF0C;&#x5982;&#x679C;&#x5305;&#x542B;&#x4E86;ordering&#x53C2;&#x6570;&#xFF0C;&#x5219;&#x6309;&#x7167;ordering&#x53C2;&#x6570;&#x6307;&#x660E;&#x7684;&#x6392;&#x5E8F;&#x5B57;&#x6BB5;&#x5BF9;&#x6570;&#x636E;&#x96C6;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x3002;</p>
+<p>&#x524D;&#x7AEF;&#x53EF;&#x4EE5;&#x4F20;&#x9012;&#x7684;ordering&#x53C2;&#x6570;&#x7684;&#x53EF;&#x9009;&#x5B57;&#x6BB5;&#x503C;&#x9700;&#x8981;&#x5728;ordering_fields&#x4E2D;&#x6307;&#x660E;&#x3002;</p>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BookListView</span><span class="hljs-params">(ListAPIView)</span>:</span>
     queryset = BookInfo.objects.all()
+    serializer_class = BookInfoSerializer
+    filter_backends = [OrderingFilter]
+    ordering_fields = (<span class="hljs-string">&apos;id&apos;</span>, <span class="hljs-string">&apos;bread&apos;</span>, <span class="hljs-string">&apos;bpub_date&apos;</span>)
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_serializer_class</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">if</span> self.request.version == <span class="hljs-string">&apos;1.0&apos;</span>:
-            <span class="hljs-keyword">return</span> BookInfoSerializer
-        <span class="hljs-keyword">else</span>:
-            <span class="hljs-keyword">return</span> BookInfoSerializer2
-
-<span class="hljs-comment"># 127.0.0.1:8000/books/2/</span>
-<span class="hljs-comment"># 127.0.0.1:8000/books/2/?version=1.0</span>
+<span class="hljs-comment"># 127.0.0.1:8000/books/?ordering=-bread</span>
 </code></pre>
 
                     
@@ -712,10 +634,10 @@ Accept: application/json
         </div>
 
         
-        <a href="../C05-Components/Pagination.html" class="navigation navigation-prev " aria-label="Previous page: 分页"><i class="fa fa-angle-left"></i></a>
+        <a href="../C05-Components/Filtering.html" class="navigation navigation-prev " aria-label="Previous page: 过滤"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../C05-Components/Exceptions.html" class="navigation navigation-next " aria-label="Next page: 异常处理"><i class="fa fa-angle-right"></i></a>
+        <a href="../C05-Components/Pagination.html" class="navigation navigation-next " aria-label="Next page: 分页"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

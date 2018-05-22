@@ -40,7 +40,7 @@
     <link rel="next" href="../C05-Components/Versioning.html" />
     
     
-    <link rel="prev" href="../C05-Components/Filtering.html" />
+    <link rel="prev" href="../C05-Components/Ordering.html" />
     
 
         
@@ -49,11 +49,11 @@
         
         
     <div class="book"
-        data-level="5.5"
+        data-level="5.6"
         data-chapter-title="分页"
         data-filepath="C05-Components/Pagination.md"
         data-basepath=".."
-        data-revision="Sat May 12 2018 16:31:38 GMT+0800 (CST)"
+        data-revision="Tue May 22 2018 20:37:39 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -497,14 +497,29 @@
             
         </li>
     
-        <li class="chapter active" data-level="5.5" data-path="C05-Components/Pagination.html">
+        <li class="chapter " data-level="5.5" data-path="C05-Components/Ordering.html">
+            
+                
+                    <a href="../C05-Components/Ordering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.6" data-path="C05-Components/Pagination.html">
             
                 
                     <a href="../C05-Components/Pagination.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.5.</b>
+                            <b>5.6.</b>
                         
                         分页
                     </a>
@@ -512,14 +527,14 @@
             
         </li>
     
-        <li class="chapter " data-level="5.6" data-path="C05-Components/Versioning.html">
+        <li class="chapter " data-level="5.7" data-path="C05-Components/Versioning.html">
             
                 
                     <a href="../C05-Components/Versioning.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.6.</b>
+                            <b>5.7.</b>
                         
                         版本
                     </a>
@@ -527,14 +542,14 @@
             
         </li>
     
-        <li class="chapter " data-level="5.7" data-path="C05-Components/Exceptions.html">
+        <li class="chapter " data-level="5.8" data-path="C05-Components/Exceptions.html">
             
                 
                     <a href="../C05-Components/Exceptions.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.7.</b>
+                            <b>5.8.</b>
                         
                         异常处理
                     </a>
@@ -542,14 +557,14 @@
             
         </li>
     
-        <li class="chapter " data-level="5.8" data-path="C05-Components/Documents.html">
+        <li class="chapter " data-level="5.9" data-path="C05-Components/Documents.html">
             
                 
                     <a href="../C05-Components/Documents.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.8.</b>
+                            <b>5.9.</b>
                         
                         自动生成接口文档
                     </a>
@@ -614,6 +629,9 @@
     serializer_class = BookInfoSerializer
     pagination_class = LargeResultsSetPagination
 </code></pre>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;&#x5982;&#x679C;&#x5728;&#x89C6;&#x56FE;&#x5185;&#x5173;&#x95ED;&#x5206;&#x9875;&#x529F;&#x80FD;&#xFF0C;&#x53EA;&#x9700;&#x5728;&#x89C6;&#x56FE;&#x5185;&#x8BBE;&#x7F6E;</strong></p>
+<pre><code class="lang-python">pagination_class = <span class="hljs-keyword">None</span>
+</code></pre>
 <h2 id="&#x53EF;&#x9009;&#x5206;&#x9875;&#x5668;">&#x53EF;&#x9009;&#x5206;&#x9875;&#x5668;</h2>
 <p>1&#xFF09; <strong>PageNumberPagination</strong></p>
 <p>&#x524D;&#x7AEF;&#x8BBF;&#x95EE;&#x7F51;&#x5740;&#x5F62;&#x5F0F;&#xFF1A;</p>
@@ -669,7 +687,7 @@
         </div>
 
         
-        <a href="../C05-Components/Filtering.html" class="navigation navigation-prev " aria-label="Previous page: 过滤"><i class="fa fa-angle-left"></i></a>
+        <a href="../C05-Components/Ordering.html" class="navigation navigation-prev " aria-label="Previous page: 排序"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../C05-Components/Versioning.html" class="navigation navigation-next " aria-label="Next page: 版本"><i class="fa fa-angle-right"></i></a>
@@ -696,13 +714,9 @@
     <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
     
 
-    
-    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
-    
-
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
     gitbook.start(config);
 });
 </script>
