@@ -27,7 +27,11 @@ class BookDetailView(RetrieveAPIView):
 	pagination_class = LargeResultsSetPagination
 ```
 
+**注意：如果在视图内关闭分页功能，只需在视图内设置**
 
+```python
+pagination_class = None
+```
 
 ## 可选分页器
 

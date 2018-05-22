@@ -27,6 +27,7 @@
   * [权限](C05-Components/Permissions.md)
   * [限流](C05-Components/Throttling.md)
   * [过滤](C05-Components/Filtering.md)
+  * [排序](C05-Components/Ordering.md)
   * [分页](C05-Components/Pagination.md)
   * [版本](C05-Components/Versioning.md)
   * [异常处理](C05-Components/Exceptions.md)
